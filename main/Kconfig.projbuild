@@ -1,0 +1,55 @@
+menu "esp32-tm1637 Example Configuration"
+
+config TM1637_CLK_PIN
+    int "TM1637 lcd CLK pin GPIO number"
+    range 0 34
+    default 18
+    help
+        GPIO number (IOxx) for CLK pin of TM1637 display.
+
+        Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+        GPIOs 35-39 are input-only so cannot be used to drive the One Wire Bus.
+
+        For ESP8266, GPIO 5 is a good choice.
+
+config TM1637_DIO_PIN
+    int "TM1637 lcd DIO pin GPIO number"
+    range 0 34
+    default 19
+    help
+        GPIO number (IOxx) for DIO pin of TM1637 display.
+
+        Some GPIOs are used for other purposes (flash connections, etc.) and cannot be used.
+
+        GPIOs 35-39 are input-only so cannot be used to drive the One Wire Bus.
+
+        For ESP8266, GPIO 4 is a good choice.
+
+
+
+config DELAY_BLOCKING_TIME
+    int "Blocking time between clock pin changes"
+    range 1 100
+    default 3
+    help
+        This option allows you to configure the blocking time between changes
+        of the clock pin in the ESP TM1637 module. The value represents the
+        delay in microseconds (us) to be inserted between clock pin changes.
+        Increasing the blocking time can help ensure reliable communication
+        with the TM1637 module, especially in scenarios where the module may
+        have difficulty keeping up with rapid clock changes. Adjust this value
+        based on your specific requirements and the characteristics of your
+        TM1637 module hardware. The range for this option is from 1 to 100 microseconds,
+        with a default value of 50 microseconds.
+
+config TM1637_BRIGHTNESS
+    int "TM1637 LED brightness"
+    range 0 7
+    default 7
+    help
+        This option sets the init brightness level of the TM1637 LED module.
+        The value should be between 0 (lowest brightness) and 7 (highest brightness).
+        The default brightness value is 7 (highest brightness).
+
+endmenu
